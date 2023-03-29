@@ -1,0 +1,17 @@
+type User {
+  id: ID!
+  createdAt: String!
+  cognitoId: String!
+  firstName: String!
+  lastName: String!
+  country: String!
+  state: String
+  email: String!
+  externalId: String
+  legacyExternalId: String
+  dob: String
+  postcode: String
+  addressLine1: String
+  addressLine2: String
+  town: String
+}

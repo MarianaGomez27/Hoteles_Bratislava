@@ -1,0 +1,90 @@
+input CreateOrderInput {
+  type: OrderType!
+  amount: Int!
+  quantity: Int!
+}
+
+type CreateOrderPayload {
+  id: String!
+}
+
+input OrderInput {
+  id: String
+}
+
+
+type Order {
+  id: String!
+  type: OrderType!
+  amount: Int!
+  quantity: Int!
+  status: OrderStatus!
+  bankDetails: BankDetails!
+  transferConfirmed: Boolean
+  createdAt: String!
+  updatedAt: String!
+  user: UserBasic
+}
+
+
+input AllOrdersFilters {
+  status: OrderStatus
+}
+
+input AllOrdersInput {
+  filters: AllOrdersFilters!
+}
+
+type SubscriptionAgreement {
+  id: ID!
+  userId: ID!
+  orderId: ID!
+  envelopeId: ID
+  status: SubscriptionAgreementStatus!
+}
+
+type SubscriptionAgreementData {
+  agreement: SubscriptionAgreement
+  subscriptionAgreementUrl: String!
+}
+
+input SubscriptionAgreementInput {
+  orderId: ID!
+}
+
+input UpdateOrderInput {
+  id: ID!
+  quantity: Int!
+}
+
+type UpdateOrderOutput {
+  id: ID!
+  quantity: Int!
+  amount: Int!
+}
+
+input CancelOrderInput {
+  id: ID!
+}
+
+type CancelOrderOutput {
+  id: ID!
+  status: OrderStatus!
+}
+
+input OrderQuery {
+  status: [OrderStatus!]
+}
+
+type Mutation {
+  createOrder(args: CreateOrderInput!): CreateOrderPayload!
+  updateOrder(args: UpdateOrderInput!): UpdateOrderOutput!
+  cancelOrder(args: CancelOrderInput!): CancelOrderOutput!
+}
+
+type Query {
+  order(args: OrderInput!): Order!
+  orders(args: OrderQuery!): [Order!]!
+  allOrders(args: AllOrdersInput!): [Order!]!
+  getOrdersByUserId(userId: String!): [Order]!
+}

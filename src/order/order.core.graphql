@@ -1,0 +1,34 @@
+enum OrderType {
+  BUY
+  SELL
+}
+
+enum OrderStatus {
+  OPEN
+  AGREED
+  FULFILLED
+  SYNCHRONISED
+  ISSUED
+  REFUNDED
+  CANCELLED
+  EXPIRED
+}
+
+enum Currency {
+  USD
+}
+
+enum SubscriptionAgreementStatus {
+  NOT_SIGNED
+  SIGNED
+}
+
+type BankDetails {
+  name: String!
+  address: String!
+  beneficiary: String!
+  accountNumber: String!
+  routingNumber: String!
+  swift: String!
+  paymentReference: String!
+}

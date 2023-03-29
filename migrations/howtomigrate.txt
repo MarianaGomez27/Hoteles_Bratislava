@@ -1,0 +1,7 @@
+How to do a migration:
+
+yarn typeorm migration:create -n EnvironmentVariablesTable -d migrations
+Remove dist folder
+Use yarn start:dev so dist folder gets generated again
+yarn typeorm migration:run
+yarn typeorm migration:revert

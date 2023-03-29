@@ -1,0 +1,141 @@
+type Image {
+  src: String!
+  alt: String!
+}
+
+enum ContentBlockType {
+  TitleAndBody
+  BulletList
+  Timeline
+  RisksAndMitigations
+  KeyValueList
+  Tabs
+  Youtube
+  Map
+  DownloadActionCards
+  Gallery
+  HighlightCard
+}
+
+union ContentBlockData =
+    ContentTitleBodyBlock
+  | ContentTimelineBlock
+  | ContentBulletListBlock
+  | ContentRisksAndMitigationsBlock
+  | ContentKeyValueListBlock
+  | ContentTabsBlock
+  | ContentYoutubeBlock
+  | ContentMapBlock
+  | ContentDownloadActionCardsBlock
+  | ContentGalleryBlock
+  | ContentHighlightCardBlock
+
+type ContentBlock {
+  type: ContentBlockType!
+  data: ContentBlockData!
+}
+
+type ContentYoutubeBlock {
+  title: String!
+  url: String!
+}
+
+type ContentMapBlock {
+  imageUrl: String!
+  mapUrl: String!
+}
+
+type ContentGalleryBlock {
+  urls: [String!]!
+}
+
+type ContentTitleBodyBlock {
+  title: String!
+  description: String!
+}
+
+type ContentBulletListBlock {
+  items: [ContentBulletListBlockItem!]!
+}
+
+type ContentBulletListBlockItem {
+  icon: String!
+  title: String!
+  description: String!
+}
+
+type ContentTimelineBlock {
+  title: String!
+  description: String!
+  items: [ContentTimelineBlockItem!]!
+}
+
+type ContentTimelineBlockItem {
+  icon: String!
+  year: Int!
+  content: String!
+}
+
+
+type ContentRisksAndMitigationsBlock {
+  title: String!
+  description: String!
+  items: [ContentRisksAndMitigationsBlockItem!]!
+}
+
+type ContentRisksAndMitigationsBlockItem {
+  risk: String!
+  mitigation: String!
+  mitigationDetails: String!
+}
+
+type ContentKeyValueListBlock {
+  title: String!
+  description: String!
+  items: [ContentKeyValueListBlockItem!]!
+}
+
+type ContentKeyValueListBlockItem {
+  label: String!
+  value: String!
+}
+
+type ContentTabsBlock {
+  title: String!
+  description: String!
+  tabs: [ContentTabsBlockTab!]!
+}
+
+type ContentTabsBlockTab {
+  name: String!
+  items: [ContentKeyValueListBlockItem!]!
+}
+
+type ContentDownloadActionCardsItem {
+  countries: [String!]!
+  url: String!
+  title: String!
+  information: String
+}
+
+type ContentDownloadActionCardsBlock {
+  items: [ContentDownloadActionCardsItem!]!
+}
+
+type ContentHighlightCardBlock {
+  title: String!
+  description: String!
+  items: [ContentHighlightCardBlockItem!]!
+}
+
+type ContentHighlightCardBlockItem {
+  imageUrl: String!
+  title: String!
+  description: String!
+}
+
+enum PlaceType {
+  HOTEL
+  AIRBNB
+  TIMESHARE
+}

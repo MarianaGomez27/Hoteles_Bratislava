@@ -1,0 +1,15 @@
+type UserBasic {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  country: String!
+  email: String!
+}
+
+type Query {
+  user: User
+}
+
+type Mutation {
+  updateUser(args: String): User!
+}
