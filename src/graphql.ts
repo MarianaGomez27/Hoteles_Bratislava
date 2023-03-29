@@ -7,6 +7,26 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export enum ContentBlockType {
+  TitleAndBody = 'TitleAndBody',
+  BulletList = 'BulletList',
+  Timeline = 'Timeline',
+  RisksAndMitigations = 'RisksAndMitigations',
+  KeyValueList = 'KeyValueList',
+  Tabs = 'Tabs',
+  Youtube = 'Youtube',
+  Map = 'Map',
+  DownloadActionCards = 'DownloadActionCards',
+  Gallery = 'Gallery',
+  HighlightCard = 'HighlightCard',
+}
+
+export enum PlaceType {
+  HOTEL = 'HOTEL',
+  AIRBNB = 'AIRBNB',
+  TIMESHARE = 'TIMESHARE',
+}
+
 export enum OrderType {
   BUY = 'BUY',
   SELL = 'SELL',
@@ -30,26 +50,6 @@ export enum Currency {
 export enum SubscriptionAgreementStatus {
   NOT_SIGNED = 'NOT_SIGNED',
   SIGNED = 'SIGNED',
-}
-
-export enum ContentBlockType {
-  TitleAndBody = 'TitleAndBody',
-  BulletList = 'BulletList',
-  Timeline = 'Timeline',
-  RisksAndMitigations = 'RisksAndMitigations',
-  KeyValueList = 'KeyValueList',
-  Tabs = 'Tabs',
-  Youtube = 'Youtube',
-  Map = 'Map',
-  DownloadActionCards = 'DownloadActionCards',
-  Gallery = 'Gallery',
-  HighlightCard = 'HighlightCard',
-}
-
-export enum PlaceType {
-  HOTEL = 'HOTEL',
-  AIRBNB = 'AIRBNB',
-  TIMESHARE = 'TIMESHARE',
 }
 
 export class CreateOrderInput {
@@ -107,71 +107,6 @@ export abstract class IMutation {
 
 export class Booking {
   id: string;
-}
-
-export class BankDetails {
-  name: string;
-  address: string;
-  beneficiary: string;
-  accountNumber: string;
-  routingNumber: string;
-  swift: string;
-  paymentReference: string;
-}
-
-export class CreateOrderPayload {
-  id: string;
-}
-
-export class Order {
-  id: string;
-  type: OrderType;
-  amount: number;
-  quantity: number;
-  status: OrderStatus;
-  bankDetails: BankDetails;
-  transferConfirmed?: Nullable<boolean>;
-  createdAt: string;
-  updatedAt: string;
-  user?: Nullable<UserBasic>;
-}
-
-export class SubscriptionAgreement {
-  id: string;
-  userId: string;
-  orderId: string;
-  envelopeId?: Nullable<string>;
-  status: SubscriptionAgreementStatus;
-}
-
-export class SubscriptionAgreementData {
-  agreement?: Nullable<SubscriptionAgreement>;
-  subscriptionAgreementUrl: string;
-}
-
-export class UpdateOrderOutput {
-  id: string;
-  quantity: number;
-  amount: number;
-}
-
-export class CancelOrderOutput {
-  id: string;
-  status: OrderStatus;
-}
-
-export abstract class IQuery {
-  abstract order(args: OrderInput): Order | Promise<Order>;
-
-  abstract orders(args: OrderQuery): Order[] | Promise<Order[]>;
-
-  abstract allOrders(args: AllOrdersInput): Order[] | Promise<Order[]>;
-
-  abstract getOrdersByUserId(
-    userId: string,
-  ): Nullable<Order>[] | Promise<Nullable<Order>[]>;
-
-  abstract user(): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export class Image {
@@ -280,6 +215,71 @@ export class ContentHighlightCardBlockItem {
   imageUrl: string;
   title: string;
   description: string;
+}
+
+export class BankDetails {
+  name: string;
+  address: string;
+  beneficiary: string;
+  accountNumber: string;
+  routingNumber: string;
+  swift: string;
+  paymentReference: string;
+}
+
+export class CreateOrderPayload {
+  id: string;
+}
+
+export class Order {
+  id: string;
+  type: OrderType;
+  amount: number;
+  quantity: number;
+  status: OrderStatus;
+  bankDetails: BankDetails;
+  transferConfirmed?: Nullable<boolean>;
+  createdAt: string;
+  updatedAt: string;
+  user?: Nullable<UserBasic>;
+}
+
+export class SubscriptionAgreement {
+  id: string;
+  userId: string;
+  orderId: string;
+  envelopeId?: Nullable<string>;
+  status: SubscriptionAgreementStatus;
+}
+
+export class SubscriptionAgreementData {
+  agreement?: Nullable<SubscriptionAgreement>;
+  subscriptionAgreementUrl: string;
+}
+
+export class UpdateOrderOutput {
+  id: string;
+  quantity: number;
+  amount: number;
+}
+
+export class CancelOrderOutput {
+  id: string;
+  status: OrderStatus;
+}
+
+export abstract class IQuery {
+  abstract order(args: OrderInput): Order | Promise<Order>;
+
+  abstract orders(args: OrderQuery): Order[] | Promise<Order[]>;
+
+  abstract allOrders(args: AllOrdersInput): Order[] | Promise<Order[]>;
+
+  abstract getOrdersByUserId(
+    userId: string,
+  ): Nullable<Order>[] | Promise<Nullable<Order>[]>;
+
+  abstract user(): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export class User {

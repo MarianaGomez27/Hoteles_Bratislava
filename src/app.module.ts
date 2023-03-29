@@ -20,6 +20,7 @@ import { SlackModule } from 'src/integrations/slack/slack.module';
 import { AuthModule } from './auth/auth.module';
 import { BookingModule } from './booking/booking.module';
 import { PlaceModule } from './place/place.module';
+import { NuiteeModule } from './nuitee/nuitee.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
